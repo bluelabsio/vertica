@@ -26,7 +26,6 @@ module Vertica
 
       def initialize(data)
         @code, other = data.unpack('Na*')
-        puts "codes we received #{@code}, #{other}"
         case @code
           when CRYPT_PASSWORD then @salt = other
           when MD5_PASSWORD, HASH_MD5 then @salt = other[0...4]
@@ -34,13 +33,11 @@ module Vertica
           when HASH, HASH_SHA512
             @salt =  other[0...4]
             @userSaltLen = other[4...8].unpack('I>').first
-            puts "user salt length is #{@userSaltLen}"
             if @userSaltLen != 16
               puts "user salt length isn't 16, raise error"
             end 
             userSaltArray = other[8...other.size].unpack('a*')
             @userSalt = userSaltArray.first
-            puts "user salt is #{@userSalt}"
         end
       end
     end

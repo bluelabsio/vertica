@@ -269,7 +269,6 @@ class Vertica::Connection
   # @private
   def read_message
     type, size = read_bytes(5).unpack('aN')
-    puts "type is #{type}"
     raise Vertica::Error::MessageError.new("Bad message size: #{size}.") unless size >= 4
     message = Vertica::Protocol::BackendMessage.factory(type, read_bytes(size - 4))
     puts "<= #{message.inspect}" if options.fetch(:debug)
@@ -290,7 +289,6 @@ class Vertica::Connection
     when Vertica::Protocol::NoticeResponse
       @notice_handler.call(message) if @notice_handler
     when Vertica::Protocol::BackendKeyData
-      puts message.pid, message.key
       @backend_pid = message.pid
       @backend_key = message.key
     when Vertica::Protocol::ParameterStatus
