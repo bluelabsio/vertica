@@ -29,8 +29,8 @@ module Vertica
           puts "@password after user salt is \n#{@password}"
           @password = Digest::SHA512.hexdigest("#{@password}#{@salt}")
           puts "@password after salt is \n#{@password}"
-          prefix = "sha512".bytes
-          @password = prefix << @password
+          prefix = "sha512"
+          @password = "#{prefix}#{@password}"
         else
           raise ArgumentError.new("unsupported authentication method: #{@auth_method}")
         end
