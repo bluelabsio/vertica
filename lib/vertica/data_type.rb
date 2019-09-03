@@ -130,7 +130,7 @@ class Vertica::DataType
   private_constant :TYPE_DESERIALIZERS
 end
 
-Vertica::DataType.register 4, 'unknown', :unknown
+Vertica::DataType.register 4, 'unknown'
 Vertica::DataType.register 5, 'bool', :bool
 Vertica::DataType.register 6, 'integer', :integer
 Vertica::DataType.register 7, 'float', :float
