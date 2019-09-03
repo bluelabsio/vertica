@@ -130,6 +130,7 @@ class Vertica::DataType
   private_constant :TYPE_DESERIALIZERS
 end
 
+Vertica::DataType.register 4, 'unknown', :unknown
 Vertica::DataType.register 5, 'bool', :bool
 Vertica::DataType.register 6, 'integer', :integer
 Vertica::DataType.register 7, 'float', :float
@@ -139,8 +140,11 @@ Vertica::DataType.register 10, 'date', :date
 Vertica::DataType.register 11, 'time'
 Vertica::DataType.register 12, 'timestamp', :timestamp
 Vertica::DataType.register 13, 'timestamp_tz', :timestamp
-Vertica::DataType.register 14, 'time_tz'
-Vertica::DataType.register 15, 'interval'
+Vertica::DataType.register 14, 'interval'
+Vertica::DataType.register 114, 'intervalym'
+Vertica::DataType.register 15, 'timetz'
 Vertica::DataType.register 16, 'numeric', :bigdecimal
 Vertica::DataType.register 17, 'bytes', :binary_string
 Vertica::DataType.register 115, 'long varchar', :unicode_string
+Vertica::DataType.register 116, 'long var binary'
+Vertica::DataType.register 117, 'binary'
